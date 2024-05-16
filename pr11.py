@@ -7,5 +7,7 @@ arcpy.MakeFeatureLayer_management(fc_facilities, 'facilities_lyr')
 arcpy.MakeFeatureLayer_management(fc_zip, 'zip_lyr')
 arcpy.management.SelectLayerByLocation('facilities_lyr', 'WITHIN_A_DISTANCE', 'zip_lyr', '3000 Meters')
 arcpy.management.SelectLayerByAttribute('facilities_lyr', 'SUBSET_SELECTION', "FACILITY = 'COLLEGE'")
+out_path_copylayer = r"E:\university\3 course\programming in gis\lections\pr6, lab 11\Programming_in_GIS_2024_L6_p11\Results\facilities_Distance_3000.shp"
+arcpy.CopyFeatures_management('facilities_lyr', out_path_copylayer)
 
 
