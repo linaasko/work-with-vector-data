@@ -9,5 +9,8 @@ arcpy.management.SelectLayerByLocation('facilities_lyr', 'WITHIN_A_DISTANCE', 'z
 arcpy.management.SelectLayerByAttribute('facilities_lyr', 'SUBSET_SELECTION', "FACILITY = 'COLLEGE'")
 out_path_copylayer = r"E:\university\3 course\programming in gis\lections\pr6, lab 11\Programming_in_GIS_2024_L6_p11\Results\facilities_Distance_3000.shp"
 arcpy.CopyFeatures_management('facilities_lyr', out_path_copylayer)
+with arcpy.da.SearchCursor(out_path_copylayer, ["Shape", "ADDRESS", "NAME", "FACILITY"]) as cursor:
+    for row in cursor:
+        print('Geometry: {0}, Address: {1}, Name: {2}, Facility: {3}'.format(row[0], row[1], row[2], row[3]))
 
 
