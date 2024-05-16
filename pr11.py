@@ -6,5 +6,6 @@ fc_zip = "zip.shp"
 arcpy.MakeFeatureLayer_management(fc_facilities, 'facilities_lyr')
 arcpy.MakeFeatureLayer_management(fc_zip, 'zip_lyr')
 arcpy.management.SelectLayerByLocation('facilities_lyr', 'WITHIN_A_DISTANCE', 'zip_lyr', '3000 Meters')
+arcpy.management.SelectLayerByAttribute('facilities_lyr', 'SUBSET_SELECTION', "FACILITY = 'COLLEGE'")
 
 
