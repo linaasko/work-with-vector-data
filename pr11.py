@@ -17,5 +17,9 @@ arcpy.AddField_management(out_path_copylayer, 'C_NAME', 'DOUBLE')
 #arcpy.MakeFeatureLayer_management(out_path_copylayer, facilities_Distance_3000_lyr)
 #arcpy.management.AddJoin(facilities_Distance_3000_lyr, "NAME", 'facilities_lyr', "NAME")
 #arcpy.CalculateField_management(facilities_Distance_3000_lyr, "C_NAME", "!fc_facilities.FAC_ID!", "PYTHON_9.3")
+with arcpy.da.UpdateCursor(out_path_copylayer, ["C_NAME", "FAC_ID"]) as cursor:
+    for row in cursor:
+        row[0] = row[1]
+        cursor.updateRow(row)
 
 
